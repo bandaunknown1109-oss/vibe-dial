@@ -79,3 +79,71 @@ function updateGreeting() {
 }
 
 updateGreeting();
+// ===== VIBE LOCK — SLIDE TO UNLOCK =====
+
+const lockScreen = document.querySelector("#lockScreen");
+const lockTime = document.querySelector("#lockTime");
+const lockDate = document.querySelector("#lockDate");
+const slider = document.querySelector("#unlockSlider");
+const handle = document.querySelector("#unlockHandle");
+
+document.body.classList.add("lock-active");
+
+function updateLockClock() {
+  const now = new Date();
+
+  lockTime.textContent = now.toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  });
+
+  lockDate.textContent = now.toLocaleDateString("en-IN", {
+    weekday: "long",
+    month: "long",
+    day: "numeric"
+  });
+}
+
+updateLockClock();
+setInterval(updateLockClock, 1000);
+
+let dragging = false;
+let startX = 0;
+let currentX = 0;
+
+function unlockApp() {
+  lockScreen.classList.add("unlocked");
+  document.body.classList.remove("lock-active");
+}
+
+function moveSlider(clientX) {
+  const max = slider.clientWidth - handle.offsetWidth - 10;
+  currentX = Math.max(0, Math.min(max, clientX - startX));
+  handle.style.left = (5 + currentX) + "px";
+
+  if (currentX >= max * 0.88) {
+    dragging = false;
+    unlockApp();
+  }
+}
+
+handle.addEventListener("pointerdown", e => {
+  dragging = true;
+  startX = e.clientX - currentX;
+  handle.setPointerCapture(e.pointerId);
+});
+
+handle.addEventListener("pointermove", e => {
+  if (dragging) moveSlider(e.clientX);
+});
+
+function releaseSlider() {
+  if (!dragging) return;
+  dragging = false;
+  currentX = 0;
+  handle.style.left = "5px";
+}
+
+handle.addEventListener("pointerup", releaseSlider);
+handle.addEventListener("pointercancel", releaseSlider);
