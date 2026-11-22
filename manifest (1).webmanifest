@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "VIBE DIAL — Beyond Calling",
+  "short_name": "VIBE DIAL",
+  "description": "A liquid-glass inspired dialer PWA prototype.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090910",
+  "theme_color": "#090910",
+  "icons": [
+    {"src":"icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
