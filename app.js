@@ -17,9 +17,29 @@ function navigate(page){
 }
 $$("[data-page]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.page)));
 $$("[data-go]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.go)));
-$("#menuBtn").addEventListener("click",openDrawer);$("#closeDrawer").addEventListener("click",closeDrawer);$("#drawerBackdrop").addEventListener("click",closeDrawer);
-function openDrawer(){$("#drawer").classList.add("open");$("#drawerBackdrop").classList.add("open")}
-function closeDrawer(){$("#drawer").classList.remove("open");$("#drawerBackdrop").classList.remove("open")}
+$("#menuBtn").addEventListener("click", openDrawer);
+
+function openDrawer() {
+  $("#drawer").classList.add("open");
+  $("#drawerBackdrop").classList.add("open");
+}
+
+function closeDrawer() {
+  $("#drawer").classList.remove("open");
+  $("#drawerBackdrop").classList.remove("open");
+}
+
+$("#closeDrawer").addEventListener("click", function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  closeDrawer();
+});
+
+$("#drawerBackdrop").addEventListener("click", closeDrawer);
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeDrawer();
+});
 $("#searchBtn").addEventListener("click",()=>{$("#searchPanel").classList.toggle("hidden");if(!$("#searchPanel").classList.contains("hidden"))$("#globalSearch").focus()});
 $("#closeSearch").addEventListener("click",()=>$("#searchPanel").classList.add("hidden"));
 $("#globalSearch").addEventListener("input",e=>{const q=e.target.value.toLowerCase();if(q){navigate("contacts");$("#contactSearch").value=q;renderContacts()}});
