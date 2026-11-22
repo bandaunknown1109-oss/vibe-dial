@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090910">
+  <meta name="description" content="VIBE DIAL — Beyond Calling. A liquid-glass inspired dialer PWA prototype.">
+  <title>VIBE DIAL</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <div class="app-shell">
+    <header class="topbar glass">
+      <button class="icon-btn" id="menuBtn" aria-label="Open menu"><span class="hamburger"></span></button>
+      <div class="brand"><span class="brand-mark">V</span><div><strong>VIBE <em>DIAL</em></strong><small>BEYOND CALLING.</small></div></div>
+      <button class="icon-btn" id="searchBtn" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg></button>
+    </header>
+
+    <main>
+      <section class="page active" id="page-home">
+        <div class="welcome-row"><div><p class="eyebrow">YOUR CALLING SPACE</p><h1>Good evening<span class="accent">.</span></h1><p class="muted">Everything connected, beautifully.</p></div><div class="status-orb"><span></span></div></div>
+        <div class="search-panel glass hidden" id="searchPanel"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg><input id="globalSearch" placeholder="Search contacts or numbers..." autocomplete="off"><button class="text-btn" id="closeSearch">Close</button></div>
+        <div class="quick-grid">
+          <button class="quick-card glass" data-go="dial"><span class="quick-icon purple">⌁</span><b>Dial pad</b><small>Make a call</small></button>
+          <button class="quick-card glass" data-go="contacts"><span class="quick-icon pink">◎</span><b>Contacts</b><small>Your people</small></button>
+          <button class="quick-card glass" data-go="history"><span class="quick-icon blue">↗</span><b>Call history</b><small>Recent activity</small></button>
+        </div>
+        <div class="section-head"><div><p class="eyebrow">STAY IN TOUCH</p><h2>Recent calls</h2></div><button class="text-btn" data-go="history">View all</button></div>
+        <div class="list glass" id="homeRecent"><div class="empty-state">No recent calls yet.<br><small>Your activity will appear here.</small></div></div>
+        <div class="promo glass"><div><p class="eyebrow">MAKE IT YOURS</p><h3>Your dialer.<br><span class="accent">Your vibe.</span></h3><p class="muted">Explore themes and personalisation.</p><button class="pill-btn" data-go="settings">Customise <span>→</span></button></div><div class="promo-art"><div class="ring ring-one"></div><div class="ring ring-two"></div><div class="promo-v">V</div></div></div>
+      </section>
+
+      <section class="page" id="page-dial">
+        <div class="page-title"><p class="eyebrow">QUICK CONNECTION</p><h1>Dial pad<span class="accent">.</span></h1><p class="muted">Enter a number to start a call.</p></div>
+        <div class="number-display glass"><div id="numberDisplay" aria-live="polite"></div><button id="deleteNumber" class="delete-btn" aria-label="Delete last digit">⌫</button></div>
+        <div class="keypad" id="keypad">
+          <button class="key" data-digit="1"><b>1</b><small> </small></button>
+          <button class="key" data-digit="2"><b>2</b><small>ABC</small></button>
+          <button class="key" data-digit="3"><b>3</b><small>DEF</small></button>
+          <button class="key" data-digit="4"><b>4</b><small>GHI</small></button>
+          <button class="key" data-digit="5"><b>5</b><small>JKL</small></button>
+          <button class="key" data-digit="6"><b>6</b><small>MNO</small></button>
+          <button class="key" data-digit="7"><b>7</b><small>PQRS</small></button>
+          <button class="key" data-digit="8"><b>8</b><small>TUV</small></button>
+          <button class="key" data-digit="9"><b>9</b><small>WXYZ</small></button>
+          <button class="key" data-digit="*"><b>*</b><small> </small></button>
+          <button class="key" data-digit="0"><b>0</b><small>+</small></button>
+          <button class="key" data-digit="#"><b>#</b><small> </small></button>
+        </div>
+        <div class="dial-actions"><button class="sim-select glass" id="simSelect">SIM · Default <span>⌄</span></button><button class="call-btn" id="callBtn" aria-label="Call">☎</button><button class="add-contact-btn glass" id="saveNumber" aria-label="Save number">＋</button></div>
+        <p class="hint">Calls are handed off to your phone's system dialer.</p>
+      </section>
+
+      <section class="page" id="page-contacts">
+        <div class="page-title page-title-row"><div><p class="eyebrow">YOUR PEOPLE</p><h1>Contacts<span class="accent">.</span></h1></div><button class="round-add" id="addContact">＋</button></div>
+        <div class="search-panel glass"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg><input id="contactSearch" placeholder="Find a contact..." autocomplete="off"></div>
+        <div class="source-chips"><button class="chip active" data-source="All">All</button><button class="chip" data-source="Google">Google</button><button class="chip" data-source="SIM">SIM</button><button class="chip" data-source="Device">Device</button></div>
+        <div class="list glass" id="contactList"><div class="empty-state">Your contact space is ready.<br><small>Add a contact to get started.</small></div></div>
+        <p class="hint">Day 1 prototype stores contacts in this browser only. Native Google/SIM/device contact integration comes in the Android build.</p>
+      </section>
+
+      <section class="page" id="page-history">
+        <div class="page-title"><p class="eyebrow">YOUR ACTIVITY</p><h1>Call history<span class="accent">.</span></h1><p class="muted">Your recent calling activity.</p></div>
+        <div class="source-chips"><button class="chip active" data-filter="All">All</button><button class="chip" data-filter="Incoming">Incoming</button><button class="chip" data-filter="Outgoing">Outgoing</button><button class="chip" data-filter="Missed">Missed</button></div>
+        <div class="list glass" id="historyList"><div class="empty-state">Nothing here yet.<br><small>Calls started from this prototype will appear here.</small></div></div>
+        <button class="clear-btn" id="clearHistory">Clear prototype history</button>
+        <p class="hint">This is local prototype history, not your Android system call log.</p>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-title"><p class="eyebrow">MAKE IT PERSONAL</p><h1>Settings<span class="accent">.</span></h1><p class="muted">Shape your calling experience.</p></div>
+        <div class="settings-group glass">
+          <div class="setting-row"><div><b>Appearance</b><small>Choose your visual mood</small></div><select id="themeSelect"><option value="violet">Liquid Violet</option><option value="rose">Soft Rose</option><option value="ocean">Midnight Ocean</option><option value="mono">Pure AMOLED</option></select></div>
+          <div class="setting-row"><div><b>Glass intensity</b><small>Adjust panel transparency</small></div><input id="glassRange" type="range" min="10" max="40" value="22"></div>
+          <div class="setting-row"><div><b>Touch feedback</b><small>Button interaction effects</small></div><label class="switch"><input id="touchToggle" type="checkbox" checked><span></span></label></div>
+          <div class="setting-row"><div><b>Reduce motion</b><small>Use calmer transitions</small></div><label class="switch"><input id="motionToggle" type="checkbox"><span></span></label></div>
+        </div>
+        <div class="settings-group glass">
+          <div class="setting-row"><div><b>Google account</b><small>Native account binding is planned for Android</small></div><span class="status-label">NOT CONNECTED</span></div>
+          <div class="setting-row"><div><b>Call recording</b><small>Device-dependent; consent and recording indicators required</small></div><span class="status-label">ANDROID BUILD</span></div>
+          <div class="setting-row"><div><b>Default dialer</b><small>Available only in the native Android app</small></div><span class="status-label">ANDROID BUILD</span></div>
+        </div>
+        <div class="about glass"><div class="brand"><span class="brand-mark">V</span><div><strong>VIBE <em>DIAL</em></strong><small>BEYOND CALLING.</small></div></div><p class="muted">Day 1 · PWA Prototype · Designed by Vivek</p><small class="muted">A concept interface. Not an emergency calling service.</small></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav glass" aria-label="Main navigation">
+      <button class="nav-item active" data-page="home"><span>⌂</span><small>Home</small></button>
+      <button class="nav-item" data-page="contacts"><span>◎</span><small>Contacts</small></button>
+      <button class="nav-item nav-dial" data-page="dial"><span>⌁</span></button>
+      <button class="nav-item" data-page="history"><span>↗</span><small>History</small></button>
+      <button class="nav-item" data-page="settings"><span>⚙</span><small>Settings</small></button>
+    </nav>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer glass" id="drawer">
+    <div class="drawer-head"><div class="brand"><span class="brand-mark">V</span><div><strong>VIBE <em>DIAL</em></strong><small>BEYOND CALLING.</small></div></div><button class="icon-btn" id="closeDrawer">×</button></div>
+    <p class="eyebrow">WORKSPACE</p>
+    <button class="drawer-link" data-page="home">⌂ <span>Home</span></button>
+    <button class="drawer-link" data-page="dial">⌁ <span>Dial pad</span></button>
+    <button class="drawer-link" data-page="contacts">◎ <span>Contacts</span></button>
+    <button class="drawer-link" data-page="history">↗ <span>Call history</span></button>
+    <p class="eyebrow drawer-label">PERSONALISE</p>
+    <button class="drawer-link" data-page="settings">✧ <span>Themes & appearance</span></button>
+    <button class="drawer-link" data-page="settings">⚙ <span>Settings</span></button>
+    <div class="drawer-footer"><span class="status-dot"></span> Day 1 prototype <small>v0.1.0</small></div>
+  </aside>
+
+  <dialog id="contactDialog" class="modal glass">
+    <form id="contactForm">
+      <div class="modal-head"><div><p class="eyebrow">NEW CONNECTION</p><h2>Add contact</h2></div><button type="button" class="icon-btn" id="closeContact">×</button></div>
+      <label>Name<input id="newName" required maxlength="60" placeholder="Contact name"></label>
+      <label>Phone number<input id="newPhone" required type="tel" maxlength="24" placeholder="+91 98765 43210"></label>
+      <label>Save to<select id="newSource"><option>Device</option><option>Google</option><option>SIM</option></select></label>
+      <button class="primary-btn" type="submit">Save contact</button>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
