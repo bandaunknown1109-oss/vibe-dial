@@ -79,3 +79,181 @@ input:focus, textarea:focus {
     to { opacity: 1; transform: translateY(0); }
   }
 }
+
+/* ===== VIBE DIAL DAY 2 — REAL ELEMENT UPGRADE ===== */
+
+:root {
+  --bg: #050507;
+  --panel: rgba(19, 17, 29, .78);
+  --panel2: rgba(27, 23, 40, .72);
+  --line: rgba(205, 181, 255, .13);
+  --accent: #c4a0ff;
+  --accent2: #f0b8ec;
+  --glow: rgba(157, 105, 255, .28);
+}
+
+/* AMOLED background */
+html {
+  background: #050507;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% -15%, rgba(120, 75, 190, .22), transparent 48%),
+    radial-gradient(ellipse at 100% 65%, rgba(190, 90, 160, .08), transparent 40%),
+    #050507;
+}
+
+/* Glass surfaces */
+.glass {
+  border-color: rgba(210, 190, 255, .14);
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, .30),
+    inset 0 1px 0 rgba(255, 255, 255, .07);
+}
+
+/* Top bar */
+.topbar {
+  background: rgba(18, 15, 29, .82);
+  border-color: rgba(210, 190, 255, .17);
+}
+
+/* Brand icon */
+.brand-mark {
+  box-shadow:
+    0 0 20px rgba(179, 138, 255, .35),
+    inset 0 1px 5px rgba(255, 255, 255, .4);
+}
+
+/* Quick action cards */
+.quick-card {
+  background: linear-gradient(
+    145deg,
+    rgba(44, 35, 65, .78),
+    rgba(18, 16, 27, .85)
+  );
+  border: 1px solid rgba(205, 181, 255, .15);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .2);
+  transition: transform .22s ease, border-color .22s ease,
+              box-shadow .22s ease;
+}
+
+.quick-card:active {
+  transform: scale(.96);
+  border-color: rgba(196, 160, 255, .5);
+}
+
+/* Search */
+.search-panel {
+  background: rgba(24, 20, 36, .78);
+  border: 1px solid var(--line);
+}
+
+/* Dial number display */
+.number-display {
+  background: linear-gradient(145deg, rgba(38, 30, 57, .8), rgba(17, 15, 25, .8));
+  border: 1px solid var(--line);
+}
+
+/* Keypad */
+.key {
+  background: linear-gradient(
+    145deg,
+    rgba(55, 43, 78, .55),
+    rgba(20, 18, 29, .85)
+  );
+  border-color: rgba(210, 190, 255, .13);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .06);
+}
+
+.key:active {
+  background: rgba(151, 105, 255, .28);
+  border-color: rgba(196, 160, 255, .55);
+  box-shadow: 0 0 22px rgba(151, 105, 255, .2);
+}
+
+/* Call button */
+.call-btn {
+  box-shadow:
+    0 8px 28px rgba(98, 214, 154, .22),
+    inset 0 1px 5px rgba(255, 255, 255, .5);
+}
+
+.call-btn:active {
+  filter: brightness(1.12);
+}
+
+/* Bottom navigation */
+.bottom-nav {
+  background: rgba(17, 15, 27, .91);
+  border: 1px solid rgba(210, 190, 255, .17);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, .45),
+    inset 0 1px rgba(255, 255, 255, .07);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
+.nav-item.active {
+  color: #d4b8ff;
+  text-shadow: 0 0 15px rgba(179, 138, 255, .45);
+}
+
+.nav-dial {
+  box-shadow: 0 0 25px rgba(151, 105, 255, .38);
+}
+
+/* Lists and settings */
+.list,
+.settings-group,
+.about {
+  background: rgba(20, 17, 31, .72);
+  border: 1px solid var(--line);
+}
+
+/* Promo card */
+.promo {
+  background:
+    radial-gradient(circle at 85% 50%, rgba(160, 105, 220, .25), transparent 48%),
+    linear-gradient(135deg, rgba(43, 31, 65, .9), rgba(17, 15, 27, .95));
+  border: 1px solid rgba(205, 181, 255, .18);
+}
+
+/* Drawer and modal */
+.drawer {
+  background: rgba(13, 11, 22, .97);
+  border-right: 1px solid var(--line);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
+.modal {
+  background: rgba(17, 14, 27, .98);
+  border-color: rgba(205, 181, 255, .2);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, .5);
+}
+
+/* Active chips and add button */
+.chip.active,
+.round-add {
+  border-color: rgba(196, 160, 255, .45);
+  box-shadow: 0 0 15px rgba(151, 105, 255, .12);
+}
+
+/* Smooth interaction */
+.icon-btn,
+.nav-item,
+.drawer-link,
+.round-add,
+.chip {
+  transition: all .22s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .quick-card,
+  .key,
+  .call-btn {
+    transition: transform .2s ease, box-shadow .2s ease,
+                background .2s ease;
+  }
+}
