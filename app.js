@@ -56,3 +56,26 @@ $("#motionToggle").addEventListener("change",e=>document.body.classList.toggle("
 const savedTheme=store.get("theme","violet");$("#themeSelect").value=savedTheme;if(savedTheme!=="violet")document.body.classList.add("theme-"+savedTheme);
 updateNumber();renderHome();renderContacts();renderHistory();
 if("serviceWorker" in navigator && location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+// VIBE DIAL — Dynamic Greeting
+function updateGreeting() {
+  const hour = new Date().getHours();
+  let greeting = "Good evening";
+
+  if (hour >= 5 && hour < 12) {
+    greeting = "Good morning";
+  } else if (hour >= 12 && hour < 17) {
+    greeting = "Good afternoon";
+  } else if (hour >= 17 && hour < 21) {
+    greeting = "Good evening";
+  } else {
+    greeting = "Good night";
+  }
+
+  const title = document.querySelector("#greetingTitle");
+
+  if (title) {
+    title.innerHTML = `${greeting}<span class="accent">.</span>`;
+  }
+}
+
+updateGreeting();
