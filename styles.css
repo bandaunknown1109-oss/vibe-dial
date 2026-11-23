@@ -389,3 +389,10 @@ body.lock-active {
 .drawer.open {
   transform: translateX(0);
 }
+/* FIX: Bottom navigation alignment */
+.bottom-nav {
+  animation: none !important;
+  transform: translateX(-50%) !important;
+  left: 50% !important;
+  width: min(486px, calc(100% - 26px));
+}
