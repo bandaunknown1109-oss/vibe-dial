@@ -380,3 +380,12 @@ body {
 body.lock-active {
   overflow: hidden;
 }
+/* FIX: Drawer must stay hidden until opened */
+.drawer {
+  animation: none !important;
+  transform: translateX(-105%);
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
