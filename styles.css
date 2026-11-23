@@ -396,3 +396,14 @@ body.lock-active {
   left: 50% !important;
   width: min(486px, calc(100% - 26px));
 }
+
+/* VIBE DIAL — FINAL BOTTOM NAV ALIGNMENT */
+.bottom-nav {
+  position: fixed !important;
+  left: max(13px, calc((100vw - 486px) / 2)) !important;
+  right: max(13px, calc((100vw - 486px) / 2)) !important;
+  width: auto !important;
+  transform: none !important;
+  animation: none !important;
+  box-sizing: border-box !important;
+}
